@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- This URDF was automatically created by SolidWorks to URDF Exporter! Originally created by Stephen Brawner (brawner@gmail.com)
+    Commit Version: 1.6.0-4-g7f85cfe  Build Version: 1.6.7995.38578
+    For more information, please see http://wiki.ros.org/sw_urdf_exporter -->
+<robot name="wheel_legged">
+  <!--Base Link-->
+  <link name="base_link">
+    <inertial>
+        <origin xyz="0.000342 -0.028601 0.004077" rpy="-1.57 0 0" />
+        <mass value="3.576" />
+        <inertia ixx="0.015958" ixy="1.03145E-04" ixz="1.8632E-05" iyy="0.03333" iyz="-3.64017E-04" izz="0.028098" />
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="-1.57 0 0" />
+        <geometry>
+            <mesh filename="package://wheel_legged/meshes/base_link.STL" />
+        </geometry>
+        <material name="">
+            <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://wheel_legged/meshes/base_link.STL" />
+        </geometry>
+    </collision>
+  </link>
+  <link name="leg1_up">
+    <inertial>
+        <origin xyz="0.0202159222023777 0.0268559700017027 0.0227556166740793" rpy="0 0 0" />
+        <mass value="0.0646858333787409" />
+        <inertia ixx="6.9607E-05" ixy="4.2928E-05" ixz="5.550E-06" iyy="4.3105E-05" iyz="7.373E-06" izz="1.04081E-04" />
+    </inertial>
+    <visual>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://wheel_legged/meshes/leg1_up.STL" />
+        </geometry>
+        <material name="">
+            <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+        </material>
+    </visual>
+    <collision>
+        <origin xyz="0 0 0" rpy="0 0 0" />
+        <geometry>
+            <mesh filename="package://wheel_legged/meshes/leg1_up.STL" />
+        </geometry>
+    </collision>
+  </link>
+  <joint name="joint1" type="revolute">
+    <origin xyz="-0.121 -0.048 0.036" rpy="1.5708 -0.32596 -1.5708" />
+    <parent link="base_link" />
+    <child link="leg1_up" />
+    <axis xyz="0 0 1" />
+    <dynamics damping="0" friction="0"/>
+    <limit lower="-1" upper="4" effort="7" velocity="12" />
+  </joint>
+
+  <link name="leg1_down">
+    <inertial>
+      <origin xyz="0.082960251946601 0.000249037196487639 0.00499999999999998" rpy="0 0 0" />
+      <mass value="0.0702638927695764" />
+      <inertia ixx="7.49794500368629E-06" ixy="-6.14855617982775E-08" ixz="1.60255358683269E-20" iyy="0.000226991429285217" iyz="-9.06357561120495E-22" izz="0.000233318309409411" />
+    </inertial>
+    <visual>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheel_legged/meshes/leg1_down.STL" />
+      </geometry>
+      <material
+        name="">
+        <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin xyz="0 0 0" rpy="0 0 0" />
+      <geometry>
+        <mesh filename="package://wheel_legged/meshes/leg1_down.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint name="joint7" type="continuous">
+    <origin xyz="0.060001 0.079999 0.0188" rpy="3.1416 0 -2.5503" />
+    <parent link="leg1_up" />
+    <child link="leg1_down" />
+    <axis xyz="0 0 1" />
+    <limit lower="-4" upper="4" effort="0" velocity="100" />
+  </joint>
+  <link
+    name="leg2_up">
+    <inertial>
+      <origin
+        xyz="0.0382232548487438 6.66587390724949E-05 0.00680987704079777"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568860756339677" />
+      <inertia
+        ixx="7.837E-06"
+        ixy="-7.2E-07"
+        ixz="-3.935E-06"
+        iyy="8.7659E-05"
+        iyz="-7.0E-09"
+        izz="9.2586E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg2_up.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg2_up.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint2"
+    type="revolute">
+    <origin
+      xyz="-0.143 -0.048 -0.036"
+      rpy="-1.5708 1.2532 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg2_up" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="4"
+      effort="7"
+      velocity="12" />
+  </joint>
+  <link
+    name="leg2_down">
+    <inertial>
+      <origin
+        xyz="0.156099 2.6E-05 0.028235"
+        rpy="0 0 0" />
+      <mass
+        value="0.644" />
+      <inertia
+        ixx="3.48408E-04"
+        ixy="-1.421E-06"
+        ixz="1.33129E-04"
+        iyy="9.93260E-04"
+        iyz="-3.96E-07"
+        izz="9.96835E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg2_down.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg2_down.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint8"
+    type="continuous">
+    <origin
+      xyz="0.1 0 -0.0032"
+      rpy="3.1416 0 2.8056" />
+    <parent
+      link="leg2_up" />
+    <child
+      link="leg2_down" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="0"
+      velocity="100" />
+  </joint>
+  <link
+    name="wheel1">
+    <inertial>
+      <origin
+        xyz="0 0 0.012475"
+        rpy="0 0 0" />
+      <mass
+        value="0.362" />
+      <inertia
+        ixx="5.16005E-04"
+        ixy="0"
+        ixz="0"
+        iyy="5.16005E-04"
+        iyz="0"
+        izz="9.43435E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/wheel1.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="1 1 1 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/wheel1.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint5"
+    type="continuous">
+    <origin
+      xyz="0.165 0 0.0325"
+      rpy="0 0 1.5708" />
+    <parent
+      link="leg2_down" />
+    <child
+      link="wheel1" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="2"
+      velocity="100" />
+  </joint>
+  <link
+    name="leg3_up">
+    <inertial>
+      <origin
+        xyz="0.0202159222023777 0.0268559700017027 -0.0227556166740792"
+        rpy="0 0 0" />
+      <mass
+        value="0.0646858333787408" />
+      <inertia
+        ixx="6.9607E-05"
+        ixy="4.2928E-05"
+        ixz="-5.550E-06"
+        iyy="4.3105E-05"
+        iyz="-7.373E-06"
+        izz="1.04081E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg3_up.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg3_up.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint3"
+    type="revolute">
+    <origin
+      xyz="0.121 -0.048 0.036"
+      rpy="1.5708 -0.32596 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg3_up" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="4"
+      effort="7"
+      velocity="12" />
+  </joint>
+  <link
+    name="leg3_down">
+    <inertial>
+      <origin
+        xyz="0.0829602519466011 0.000249037196487646 0.00499999999999989"
+        rpy="0 0 0" />
+      <mass
+        value="0.0702638927695764" />
+      <inertia
+        ixx="7.49794500368628E-06"
+        ixy="-6.14855617983332E-08"
+        ixz="-2.18032531425112E-21"
+        iyy="0.000226991429285218"
+        iyz="-7.1292816272825E-22"
+        izz="0.000233318309409411" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg3_down.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg3_down.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint9"
+    type="continuous">
+    <origin
+      xyz="0.060001 0.079999 -0.0088"
+      rpy="3.1416 0 -2.5503" />
+    <parent
+      link="leg3_up" />
+    <child
+      link="leg3_down" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="0"
+      velocity="100" />
+  </joint>
+  <link
+    name="leg4_up">
+    <inertial>
+      <origin
+        xyz="0.0354630167638782 -0.0142617003412778 -0.0151901229592021"
+        rpy="0 0 0" />
+      <mass
+        value="0.0568860756339676" />
+      <inertia
+        ixx="1.8356E-05"
+        ixy="-2.7010E-05"
+        ixz="-3.651E-06"
+        iyy="7.7139E-05"
+        iyz="1.468E-06"
+        izz="0.2586E-05" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg4_up.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg4_up.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint4"
+    type="revolute">
+    <origin
+      xyz="0.121 -0.048 -0.036"
+      rpy="1.5708 0.87262 -1.5708" />
+    <parent
+      link="base_link" />
+    <child
+      link="leg4_up" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-1"
+      upper="4"
+      effort="7"
+      velocity="12" />
+  </joint>
+  <link
+    name="leg4_down">
+    <inertial>
+      <origin
+        xyz="0.156099 2.6E-05 -0.018235"
+        rpy="0 0 0" />
+      <mass
+        value="0.644" />
+      <inertia
+        ixx="3.48408E-04"
+        ixy="-1.421E-06"
+        ixz="-1.33129E-04"
+        iyy="9.93260E-04"
+        iyz="3.96E-07"
+        izz="9.96835E-04" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg4_down.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/leg4_down.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint10"
+    type="continuous">
+    <origin
+      xyz="0.092843 -0.03715 -0.0352"
+      rpy="0 0 3.0969" />
+    <parent
+      link="leg4_up" />
+    <child
+      link="leg4_down" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="0"
+      velocity="100" />
+  </joint>
+  <link
+    name="wheel2">
+    <inertial>
+      <origin
+        xyz="0 0 -0.011025"
+        rpy="0 0 0" />
+      <mass
+        value="0.362" />
+      <inertia
+        ixx="0.000516005"
+        ixy="0"
+        ixz="0"
+        iyy="0.000516005"
+        iyz="0"
+        izz="0.000943435" />
+    </inertial>
+    <visual>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/wheel2.STL" />
+      </geometry>
+      <material
+        name="">
+        <color
+          rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
+      </material>
+    </visual>
+    <collision>
+      <origin
+        xyz="0 0 0"
+        rpy="0 0 0" />
+      <geometry>
+        <mesh
+          filename="package://wheel_legged/meshes/wheel2.STL" />
+      </geometry>
+    </collision>
+  </link>
+  <joint
+    name="joint6"
+    type="continuous">
+    <origin
+      xyz="0.165 0 -0.046"
+      rpy="3.1416 0 -1.5708" />
+    <parent
+      link="leg4_down" />
+    <child
+      link="wheel2" />
+    <axis
+      xyz="0 0 1" />
+    <limit
+      lower="-4"
+      upper="4"
+      effort="2"
+      velocity="100" />
+  </joint>
+
+</robot>
