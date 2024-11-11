@@ -4,7 +4,7 @@
 
 ### Installation
 
-1. Create a new python virtual env with python 3.8 
+1. Create a new python virtual env with python 3.8
 2. Install pytorch with cuda from https://pytorch.org/get-started/
 3. Install Isaac Gym
    - Download and install Isaac Gym Preview 4 from https://developer.nvidia.com/isaac-gym
@@ -28,6 +28,7 @@ It takes about three thousand iterations to reach convergence.
 #### play
 
 ```
-python wheeled_bipedal_gym/scripts/play.py --task=diablo
+python wheeled_bipedal_gym/scripts/play.py --task=balio
 ```
 
+# wheel_legged_gym
