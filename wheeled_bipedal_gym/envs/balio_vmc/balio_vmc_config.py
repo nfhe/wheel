@@ -64,14 +64,16 @@ class BalioVMCCfg(BalioCfg):
         slope_treshold = 0.75  # slopes above this threshold will be corrected to vertical surfaces
 
     class rewards(BalioCfg.rewards):
+        # tracking_lin_vel与tracking_lin_vel_enhance的功能应该是一致的，
         class scales:
-            tracking_lin_vel = 1.0
+            tracking_lin_vel = 2.0
             tracking_lin_vel_enhance = 1
             tracking_ang_vel = 1.0
+            # tracking_ang_vel_enhance = 1
 
-            base_height = 20 #TODO: 5
+            base_height = 5 #20
             nominal_state = -0.1
-            lin_vel_z = -0.1e-3
+            lin_vel_z = -1e-3  # -0.1e-3 #-2.0
             ang_vel_xy = -0.05
             orientation = -100.0
 
@@ -82,33 +84,34 @@ class BalioVMCCfg(BalioCfg):
             action_smooth = -0.01
 
             collision = -1.0
-            dof_pos_limits = -5 #TODO: -1
+            dof_pos_limits = -2 #-5
 
-            theta_limit = -0.1e-2 #TODO: -0.1e-5
-            same_l = -0.1e-8
+            theta_limit = -0.1 # -0.1e-2
+            same_l = -0.1e-3 #-0.1e-8
+            same_theta = 1.0 #-0.1e-8
             # special for wheel
-            # wheel_vel = -0.1e-5
-            wheel_vel = 0. #TODO: -0.1e-5
+            wheel_vel = -0.5e-5 # -0.1e-5
+            # wheel_vel = 0.
 
-        base_height_target = 0.30
+        base_height_target = 0.15
 
     class control(BalioCfg.control):
         action_scale_theta = 0.5
         action_scale_l0 = 0.1
         action_scale_vel = 10.0
 
-        l0_offset = 0.175
-        feedforward_force = 40  # 40[N]
+        l0_offset = 0.145
+        feedforward_force = 17.5  # 40[N]
 
         # real max
         kp_theta = 10  # [N*m/rad]
         kd_theta = 1  # [N*m*s/rad]
-        kp_l0 = 100  # [N/m]
+        kp_l0 = 80  # [N/m]
         kd_l0 = 5  # [N*s/m]
 
         # PD Drive parameters:
         stiffness = {"f0": 0.0, "f1": 0.0, "wheel": 0}  # [N*m/rad]
-        damping = {"f0": 0.0, "f1": 0.0, "wheel": 0.8}  # [N*m*s/rad]
+        damping = {"f0": 0.0, "f1": 0.0, "wheel": 0.5}  # [N*m*s/rad]
 
     class normalization(BalioCfg.normalization):
         class obs_scales(BalioCfg.normalization.obs_scales):
@@ -125,10 +128,10 @@ class BalioVMCCfg(BalioCfg):
 
     class commands(BalioCfg.commands):
         class ranges:
-            lin_vel_x = [-0.001, 0.001]  # min max [m/s]
-            # lin_vel_x = [-5.0, 5.0]  # min max [m/s]
+            # lin_vel_x = [-0.01, 0.01]  # min max [m/s]
+            lin_vel_x = [-1.0, 1.0]  # min max [m/s]
             ang_vel_yaw = [-3.14, 3.14]  # min max [rad/s]
-            height = [0.15, 0.25]
+            height = [0.12, 0.25]
             heading = [-3.14, 3.14]
 
     class domain_rand(BalioCfg.domain_rand):

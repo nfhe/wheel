@@ -224,6 +224,7 @@ class BalioVMC(WheeledBipedal):
                                        self.L0) - self.l0_kd * self.L0_dot
         self.torque_wheel = self.d_gains[:, [2, 5]] * (wheel_vel_ref -
                                                        self.dof_vel[:, [2, 5]])
+        # self.error_wheel_vel = wheel_vel_ref - self.dof_vel[:, [2, 5]]
         T1, T2 = self.compute_motor_torque(
             self.force_leg +
             self.cfg.control.feedforward_force * torch.cos(self.theta0),self.torque_leg)
@@ -640,9 +641,15 @@ class BalioVMC(WheeledBipedal):
             self.action_delay_idx = action_delay_idx.long()
 
     # ------------ reward functions----------------
+    # def _reward_theta_limit(self):
+    #     # Penalize theta is too huge
+    #     return torch.sum(torch.square(self.theta0[:, :2]), dim=1)
+
     def _reward_theta_limit(self):
-        # Penalize theta is too huge
-        return torch.sum(torch.square(self.theta0[:, :2]), dim=1)
+            # Penalize theta is too huge
+            base_pitch = self.projected_gravity[:, 1]
+            base_pitch = base_pitch.unsqueeze(1)
+            return torch.sum(torch.square(self.theta0[:, :2] + base_pitch), dim=1)
 
     def _reward_same_l(self):
         # Penalize l is too dif
@@ -656,7 +663,22 @@ class BalioVMC(WheeledBipedal):
         return torch.sum(
             torch.square(self.dof_vel[:, 2]) +
             torch.square(self.dof_vel[:, 5]))
+        # 仅在命令接近零时，才严格惩罚轮子的速度
+        # command_norm = torch.norm(self.commands[:, :1], dim=1)
+        # no_command_condition = command_norm < 0.1  # 当命令几乎为零时，严格要求轮子静止
+        # return torch.where(
+        #     no_command_condition,
+        #     torch.sum(torch.square(self.dof_vel[:, [2, 5]]), dim=1),
+        #     torch.tensor(0.0, device=self.device)  # 如果有命令，则不做惩罚
+        # )
+
 
     def _reward_static_action_rate(self):
         # When the order remains unchanged, the punishment action rate is higher
         return torch.square(self.L0[:, 0] - self.L0[:, 1])
+
+    def _reward_same_theta(self):
+        # Penalize difference in angle between left and right legs
+        theta_diff = torch.square(self.theta0[:, 0] - self.theta0[:, 1])
+        return torch.exp(-theta_diff / 0.1)  # 可以调整分母值来控制惩罚强度
+

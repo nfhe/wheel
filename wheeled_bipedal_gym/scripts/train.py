@@ -56,7 +56,7 @@ if __name__ == "__main__":
 
     # 继续训练
     # /home/he/quad/wheel_legged/lsy/v2/wheeled_bipedal_gym/wheeled_bipedal_gym/scripts
-    # python train.py --resume --load_run=Nov05_10-36-26_ --checkpoint=1800
+    # python train.py --resume --load_run=Nov10_10-17-17_ --checkpoint=2000
 
     # logs
     # /home/he/quad/wheel_legged/lsy/v2/wheeled_bipedal_gym
