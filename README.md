@@ -1,6 +1,6 @@
 ## wheeled_bipedal_gym
 
-> Mainly based on https://github.com/clearlab-sustech/Wheel-Legged-Gym, some reward functions were modified and models were replaced, and the `DirectDriveTech Diablo Robot` model was used for training.
+> Mainly based on https://github.com/clearlab-sustech/Wheel-Legged-Gym, some reward functions were modified and models were replaced, and the `Balio Robot` model was used for training.
 
 ### Installation
 
