@@ -32,3 +32,5 @@ python wheeled_bipedal_gym/scripts/play.py --task=balio
 ```
 
 # wheel_legged_gym
+
+git remote add origin git@github.com:nfhe/wheel_legged_gym.git

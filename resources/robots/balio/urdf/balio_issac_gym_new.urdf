@@ -36,7 +36,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_up.STL" />
+                <mesh filename="../meshes/leg2_up.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
@@ -45,7 +45,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_up.STL" />
+                <mesh filename="../meshes/leg2_up.STL" />
             </geometry>
         </collision>
     </link>
@@ -67,7 +67,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_down.STL" />
+                <mesh filename="../meshes/leg2_down.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
@@ -76,7 +76,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_down.STL" />
+                <mesh filename="../meshes/leg2_down.STL" />
             </geometry>
         </collision>
     </link>
@@ -98,7 +98,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/wheel1.STL" />
+                <mesh filename="../meshes/wheel1.STL" />
             </geometry>
             <material name="">
                 <color rgba="1 1 1 1" />
@@ -107,7 +107,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/wheel1.STL" />
+                <mesh filename="../meshes/wheel1.STL" />
                 <!-- <cylinder radius="0.064" length="0.04"/> -->
             </geometry>
         </collision>
@@ -130,7 +130,7 @@
         <visual>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_up.STL" />
+                <mesh filename="../meshes/leg2_up.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
@@ -139,7 +139,7 @@
         <collision>
             <origin xyz="0 0 0" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_up.STL" />
+                <mesh filename="../meshes/leg2_up.STL" />
             </geometry>
         </collision>
     </link>
@@ -161,7 +161,7 @@
         <visual>
             <origin xyz="0 0 -0.007" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_down.STL" />
+                <mesh filename="../meshes/leg2_down.STL" />
             </geometry>
             <material name="">
                 <color rgba="0.929411764705882 0.929411764705882 0.929411764705882 1" />
@@ -170,7 +170,7 @@
         <collision>
             <origin xyz="0 0 -0.007" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/leg2_down.STL" />
+                <mesh filename="../meshes/leg2_down.STL" />
             </geometry>
         </collision>
     </link>
@@ -192,7 +192,7 @@
         <visual>
             <origin xyz="0 0 -0.07" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/wheel1.STL" />
+                <mesh filename="../meshes/wheel1.STL" />
             </geometry>
             <material name="">
                 <color rgba="1 1 1 1" />
@@ -201,7 +201,7 @@
         <collision>
             <origin xyz="0 0 -0.07" rpy="0 0 0" />
             <geometry>
-                <mesh filename="package://balio/meshes/wheel1.STL" />
+                <mesh filename="../meshes/wheel1.STL" />
                 <!-- <cylinder radius="0.064" length="0.04"/> -->
             </geometry>
         </collision>

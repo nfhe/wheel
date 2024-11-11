@@ -81,8 +81,8 @@ class BalioCfg(WheeledBipedalCfg):
             "lf0_Joint": -0.418,
             "lf1_Joint": 0.23,
             "l_wheel_Joint": 0.0,
-            "rf0_Joint": -0.418,
-            "rf1_Joint": 0.23,
+            "rf0_Joint": -0.418, # 23.95
+            "rf1_Joint": 0.23, #13.179
             "r_wheel_Joint": 0.0,
         }
 
@@ -99,7 +99,8 @@ class BalioCfg(WheeledBipedalCfg):
         vel_action_scale = 10.0
 
     class asset(WheeledBipedalCfg.asset):
-        file = "{WHEELED_BIPEDAL_GYM_ROOT_DIR}/resources/robots/balio/urdf/balio_issac_gym.urdf"
+        file = "{WHEELED_BIPEDAL_GYM_ROOT_DIR}/resources/robots/balio/urdf/balio_issac_gym_new.urdf"
+        # file = "{WHEELED_BIPEDAL_GYM_ROOT_DIR}/resources/robots/balio/urdf/balio_issac_gym.urdf"
         name = "wl"
         offset = 0.035
         l1 = 0.1 #TODO:0.15
@@ -108,7 +109,6 @@ class BalioCfg(WheeledBipedalCfg):
         terminate_after_contacts_on = ["base_link"]
         self_collisions = 1
         flip_visual_attachments = False
-
 
     class domain_rand(WheeledBipedalCfg.domain_rand):
         randomize_friction = True
@@ -171,7 +171,8 @@ class BalioCfg(WheeledBipedalCfg):
 
     class normalization(WheeledBipedalCfg.normalization):
         class obs_scales(WheeledBipedalCfg.normalization.obs_scales):
-            lin_vel = 10.0
+            # lin_vel = 10.0
+            lin_vel = 2.0
             ang_vel = 0.25
             dof_pos = 1.0
             dof_vel = 0.05

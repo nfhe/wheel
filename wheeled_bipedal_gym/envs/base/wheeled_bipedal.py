@@ -279,7 +279,7 @@ class WheeledBipedal(BaseTask):
             self.edge_reset_buf |= self.base_position[:,
                                                       1] < self.terrain_y_min + 1
         self.reset_buf = ((self.fail_buf
-                           > self.cfg.env.fail_to_terminal_time_s / self.dt /10 )
+                           > self.cfg.env.fail_to_terminal_time_s / self.dt )
                           | self.time_out_buf
                           | self.edge_reset_buf)
         # fail_buf = torch.any(torch.norm(self.contact_forces[:, self.termination_contact_indices, :], dim=-1) > 1., dim=1)
@@ -1667,7 +1667,7 @@ class WheeledBipedal(BaseTask):
         return torch.sum(torch.square(self.projected_gravity[:, :2]), dim=1)
 
     def _reward_base_height(self):
-        # Penalize base height away from target
+        # 4.Penalize base height away from target
         # print(self.commands[0, 2], self.base_height[0])
         if self.reward_scales["base_height"] < 0:
             return torch.abs(self.base_height - self.commands[:, 2])
@@ -1763,20 +1763,20 @@ class WheeledBipedal(BaseTask):
         )
 
     def _reward_tracking_lin_vel(self):
-        # Tracking of linear velocity commands (x axes)
+        # 1.Tracking of linear velocity commands (x axes)
         lin_vel_error = torch.square(self.commands[:, 0] -
                                      self.base_lin_vel[:, 0])
         return torch.exp(-lin_vel_error / self.cfg.rewards.tracking_sigma)
 
     def _reward_tracking_lin_vel_enhance(self):
-        # Tracking of linear velocity commands (x axes)
+        # 2.Tracking of linear velocity commands (x axes)
         lin_vel_error = torch.square(self.commands[:, 0] -
                                      self.base_lin_vel[:, 0])
         return torch.exp(
             -lin_vel_error / self.cfg.rewards.tracking_sigma / 10) - 1
 
     def _reward_tracking_ang_vel(self):
-        # Tracking of angular velocity commands (yaw)
+        # 3.Tracking of angular velocity commands (yaw)
         ang_vel_error = torch.square(self.commands[:, 1] -
                                      self.base_ang_vel[:, 2])
         return torch.exp(-ang_vel_error / self.cfg.rewards.tracking_sigma)
@@ -1815,7 +1815,7 @@ class WheeledBipedal(BaseTask):
                                    < 0.1)
 
     def _reward_nominal_state(self):
-        # return torch.square(self.theta0[:, 0] - self.theta0[:, 1])
+        # 5.return torch.square(self.theta0[:, 0] - self.theta0[:, 1])
         if self.reward_scales["nominal_state"] < 0:
             return torch.square(self.theta0[:, 0] - self.theta0[:, 1])
         else:
@@ -1830,28 +1830,28 @@ class WheeledBipedal(BaseTask):
             dim=1,
         )
 
-    # def _reward_theta_limit(self):
-    #     # Penalize theta is too huge
-    #     return torch.sum(torch.square(self.theta0[:, :2]), dim=1)
-
     def _reward_theta_limit(self):
         # Penalize theta is too huge
-        base_pitch = self.projected_gravity[:, 1]
-        base_pitch = base_pitch.unsqueeze(1)
-        return torch.sum(torch.square(self.theta0[:, :2] + base_pitch), dim=1)
+        return torch.sum(torch.square(self.theta0[:, :2]), dim=1)
+
+    # def _reward_theta_limit(self):
+    #     # Penalize theta is too huge
+    #     base_pitch = self.projected_gravity[:, 1]
+    #     base_pitch = base_pitch.unsqueeze(1)
+    #     return torch.sum(torch.square(self.theta0[:, :2] + base_pitch), dim=1)
 
     def _reward_same_l(self):
         # Penalize l is too dif
         return torch.square(self.L0[:, 0] - self.L0[:, 1])
 
-    def _reward_wheel_vel(self):
-        # Penalize dof velocities
-        # left_wheel_vel = self.commands[:,0]/2 - self.commands[:,1]
-        # right_wheel_vel = self.commands[:,0]/2 + self.commands[:,1]
-        # return torch.sum(torch.square(self.dof_vel[:, 2] - left_wheel_vel) + torch.square(self.dof_vel[:, 5]) - right_wheel_vel)
-        return torch.sum(
-            torch.square(self.dof_vel[:, 2]) +
-            torch.square(self.dof_vel[:, 5]))
+    # def _reward_wheel_vel(self):
+    #     # Penalize dof velocities
+    #     # left_wheel_vel = self.commands[:,0]/2 - self.commands[:,1]
+    #     # right_wheel_vel = self.commands[:,0]/2 + self.commands[:,1]
+    #     # return torch.sum(torch.square(self.dof_vel[:, 2] - left_wheel_vel) + torch.square(self.dof_vel[:, 5]) - right_wheel_vel)
+    #     return torch.sum(
+    #         torch.square(self.dof_vel[:, 2]) +
+    #         torch.square(self.dof_vel[:, 5]))
 
     def _reward_block_l(self):
         vel_x_des = self.commands[:, 0]
